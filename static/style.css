@@ -1,0 +1,130 @@
+html {
+    display:table;
+    height:100%;
+    width:100%;
+}
+
+body {
+    background-color: #ff4d68;
+    width:100%;
+    display:table-cell;
+    vertical-align:middle;
+    height:100%;
+}
+
+.container {
+    background-color: #700013;
+    max-width:400px;
+    height:300px;
+    margin: 20px auto;
+    display:grid;
+    grid-template-columns: auto 200px auto;
+    grid-template-rows: 100px 100px 100px;
+}
+
+#time {
+    text-align:center;
+    color:white;
+    padding-left:2px;
+    padding-top:2px;
+}
+
+#problem {
+    grid-row: 1;
+    grid-column: 2 / 3;
+    background-color: #e30800;
+
+    font-size:2em;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+#problem > div {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+#answer {
+    grid-row: 2;
+    grid-column: 2 / 3;
+    background-color: #4ce31d;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+#answer > div {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+#feedback{
+    grid-row: 3;
+    grid-column: 2 / 3;
+    background-color: #00e3da;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+#feedback > div {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+#score {
+    grid-row: 1;
+    grid-column: 3;
+    background-color: gold;
+    text-align: center;
+    vertical-align:middle;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+#score > div {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+#level {
+    grid-row: 1;
+    grid-column: 1;
+    background-color: #000000;
+    color:white;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+#level > div {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+
+input {
+    text-align:center;
+    height:40px;
+    font-size: 2em;
+    width: 75px;
+}
+
+.answer {
+    font-size: 2em;
+    text-align:center;
+}
+
+.correct {
+    color:green;
+}
+
+.wrong {
+    color:red;
+}

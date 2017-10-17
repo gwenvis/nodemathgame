@@ -1,0 +1,16 @@
+{
+  "name": "rekenspelletje",
+  "version": "1.0.0",
+  "description": "Reken spel voor school",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antonio Bottelier",
+  "license": "ISC"
+}
