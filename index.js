@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const server = app.listen(8080);
 const io = require('socket.io').listen(server);
+const fs = require("fs");
 
 var players = {};
 
@@ -29,16 +30,37 @@ io.on('connection', (socket) => {
         startTime:  players.id.startTime,
     });
 
+    io.to(socket.id).emit("highscores", getHighScores());
+
 
     socket.on("answer", (json) => {
         let id = json.playerId;
         console.log(players.id.numbers[0]);
         if (checkAnswer(json.playerId, json.answer))
             rightAnswer(id);
-        else
+        // else
             wrongAnswer(id);
     });
 });
+
+function getHighScores() {
+    let filename = "highscores.json";
+    createIfNotExists(filename);
+    readFile(filename);
+}
+
+function readFile(filename) {
+
+}
+
+function createIfNotExists(filename) {
+    let path = __dirname + "/" + filename;
+
+   if(!fs.existsSync(path)) {
+       let w = fs.createWriteStream(path, {flags:"w"});
+       fs.closeSync(w);
+   }
+}
 
 function wrongAnswer(id) {
     let player = newPlayer(id);
@@ -59,7 +81,7 @@ function rightAnswer(id) {
     if (player.score > 10) {
         player.score = 0;
         player.level++;
-        if (player.level == 5) {
+        if (player.level === 5) {
             won(id);
             return;
         }
@@ -75,11 +97,10 @@ function rightAnswer(id) {
         startTime:  players.id.startTime
     }];
     io.to(id).emit("answer", newply);
-
 }
 
 function won(id) {
-
+    io.to(id).emit("won", Date.now() - players.id.startTime);
 }
 
 function checkAnswer(id, answer) {
@@ -87,13 +108,13 @@ function checkAnswer(id, answer) {
     let numbers = players.id.numbers;
     switch (players.id.level) {
         default:
-            return (answer == (numbers[0] * numbers[1]));
+            return (answer === (numbers[0] * numbers[1]));
         case 2:
-            return answer == numbers[1];
+            return answer === numbers[1];
         case 3:
-            return answer == (numbers[0] + numbers[1] * numbers[2]);
+            return answer === (numbers[0] + numbers[1] * numbers[2]);
         case 4:
-            return answer == (numbers[2]);
+            return answer === (numbers[2]);
     }
 }
 

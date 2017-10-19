@@ -16,10 +16,50 @@ body {
     background-color: #700013;
     max-width:400px;
     height:300px;
-    margin: 20px auto;
+    margin: 0 auto;
     display:grid;
     grid-template-columns: auto 200px auto;
     grid-template-rows: 100px 100px 100px;
+}
+
+#highscores {
+    width:400px;
+    height:200px;
+    display:grid;
+    margin: 5px auto;
+    position:absolute;
+    left:50%;
+}
+
+#highscoresbutton {
+    position:relative;
+    left:-50%;
+    width:100%;
+    height:100%;
+    text-align:right;
+}
+
+@keyframes in {
+    0% {top:5%;}
+    100%{top:-100%;}
+}
+
+@keyframes out {
+    0%{top:-100%;}
+    100% {top:5%;}
+}
+
+.buttontext {
+    cursor:pointer;
+}
+
+#highscoreswrapper {
+    position: absolute;
+    left:-50%;
+    top:-100%;
+    z-index:-1;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 #time {

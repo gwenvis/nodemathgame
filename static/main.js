@@ -8,11 +8,24 @@ const elements = {
     feedback: document.getElementById("feedback").firstElementChild,
     score: document.getElementById("score").firstElementChild,
     level: document.getElementById("level").firstElementChild,
-    time: document.getElementById("time")
+    time: document.getElementById("time"),
+    highscoreButton: document.getElementById("highscoresbutton"),
 };
 
 socket.on('new player info', (data) => newPlayer(data));
 socket.on('answer', (data) => receiveAnswer(data));
+socket.on('won', (time)=>won(time));
+socket.on('highscores', (highscores)=>addhighscores(highscores));
+
+var hDis = false;
+elements.highscoreButton.onclick = () => {
+    let element = document.getElementById("highscoreswrapper");
+    if(hDis)
+        element.style = "animation-name: in;";
+    else
+        element.style = "animation-name: out;";
+    hDis = !hDis;
+};
 
 const answers = {
     correct: ["Correct!", "Yep!", "Nice!", "Awesome!", "Cool!", "Wicked!",
@@ -23,6 +36,14 @@ const answers = {
 elements.answer.addEventListener("keyup", submit_solution);
 
 var player;
+
+function won(time) {
+
+}
+
+function addhighscores(highscores) {
+
+}
 
 function newPlayer(data) {
     player = data;
@@ -87,6 +108,6 @@ function answer(correct) {
 window.setInterval(() => {
     elements.time.innerHTML =
         Math.floor((Date.now() - player.startTime) / 1000);
-}, 1000);
+}, 500);
 
 elements.answer.firstElementChild.focus();
